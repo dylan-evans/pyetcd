@@ -5,29 +5,9 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
-# before_install:
-#  - if [[ $TOXENV = py35 && -f ~/virtualenv/python3.5/bin/activate ]]; then source ~/virtualenv/python3.5/bin/activate; fi
-
-
-#env:
-#- TOXENV=flake8
-#- TOXENV=cov
-#- TOXENV=py26
-#- TOXENV=py27
-#- TOXENV=py33
-#- TOXENV=py34
-#- TOXENV=py35
-#- TOXENV=py36
-
-#addons:
-#  apt:
-#    sources:
-#      - deadsnakes
-#    packages:
-#      - python3.5
 
 install: make bootstrap
-script: make test
+script: make lint test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
