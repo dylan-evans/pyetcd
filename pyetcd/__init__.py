@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import codecs
 
 __author__ = 'TwinDB Development Team'
 __email__ = 'dev@twindb.com'
@@ -259,8 +260,8 @@ class EtcdResult(object):
         except (TypeError, AttributeError):
             pass
         try:
-            self._response_content = response.content
-            self._payload = json.loads(response.content)
+            self._response_content = codecs.decode(response.content)
+            self._payload = json.loads(self._response_content)
             self._raise_for_status(self._payload)
         except (ValueError, TypeError, AttributeError) as err:
             raise EtcdException(err)
