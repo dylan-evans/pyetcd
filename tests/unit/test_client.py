@@ -74,7 +74,7 @@ def test_client_raises_exception_if_unsupported_protocol():
 @mock.patch('pyetcd.client.requests')
 def test_write(mock_requests, default_etcd, payload_write_success):
     mock_requests.put.return_value = mock.Mock(content=payload_write_success)
-    response = default_etcd.write('/messsage', 'Hello world')
+    response = default_etcd.write('/messsage', b'Hello world')
     assert response.action == 'set'
     assert response.node['value'] == 'Hello world'
 
